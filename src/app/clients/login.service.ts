@@ -12,6 +12,7 @@ import {Jwt} from '../models/jwt.model';
 import {ApiKeyService} from './apikey.service';
 import {AccountService} from './account.service';
 import {CookieService} from 'ngx-cookie-service';
+import * as moment from "moment";
 
 @Injectable()
 export class LoginService {
@@ -122,8 +123,10 @@ export class LoginService {
   }
 
   public setSession(data : Jwt) {
+    const now = moment().add(data.expiresInMinutes, 'minutes').toDate();
+
     const cookie = btoa(JSON.stringify(data));
     console.debug(`Setting cookie for: ${this.host}`);
-    this.cookies.set(LoginService.AuthCookie, cookie, null, '/', this.host);
+    this.cookies.set(LoginService.AuthCookie, cookie, now, '/', this.host);
   }
 }

@@ -73,6 +73,10 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password
     });
+
+    if(this.isLoggedIn) {
+      this.apps.forward(this.forwardTo);
+    }
   }
 
   public loginValid() : boolean {

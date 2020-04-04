@@ -34,9 +34,7 @@ export class ForgotPasswordComponent implements OnInit {
       Validators.email
     ]);
 
-    console.log(this.route);
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       this.email.patchValue(params['email'] || '');
     });
   }
@@ -91,7 +89,9 @@ export class ForgotPasswordComponent implements OnInit {
       this.alerts.showNotification('Password has successfully been reset!', 'top-center', 'success');
       this.router.navigate(['/login']);
     }, error => {
-      console.log(error);
+      console.debug("Unable to reset password!");
+      console.debug(error);
+
       switch(error.status) {
         case 404:
           this.alerts.showNotification('Unknown email address!', 'top-center', 'warning');
