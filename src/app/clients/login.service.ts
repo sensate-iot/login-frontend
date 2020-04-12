@@ -94,8 +94,10 @@ export class LoginService {
 
   public getJwt() : Jwt {
     const data = localStorage.getItem('jwt');
-    if(!data)
+
+    if(!data) {
       return null;
+    }
 
     return JSON.parse(data, function (key, value) {
       if(value !== '')

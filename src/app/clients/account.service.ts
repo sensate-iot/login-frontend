@@ -68,10 +68,11 @@ export class AccountService {
     return this.http.post(environment.authApiHost + '/accounts/register', data, this.options);
   }
 
-  public rawCheckPhoneConfirmed() {
+  public checkPhoneConfirmed(token: string) {
     return this.http.get<Status>(environment.authApiHost + '/accounts/phone-confirmed', {
       observe: 'response',
       headers: new HttpHeaders().set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${token}`)
     });
   }
 }

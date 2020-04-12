@@ -14,6 +14,7 @@ import {AlertService} from "../../clients/alert.service";
 import {AccountService} from "../../clients/account.service";
 import {StatusCode} from "../../models/status.model";
 import {AppsService} from "../../clients/apps.service";
+import {Title} from "@angular/platform-browser";
 
 export class LoginErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -43,11 +44,13 @@ export class LoginComponent implements OnInit {
   constructor(private auth : LoginService,
               private accounts : AccountService,
               private router : Router,
+              private title: Title,
               private route: ActivatedRoute,
               private apps: AppsService,
               private alerts : AlertService) {
     this.isLoggedIn = false;
     this.forwardTo = 'dashboard';
+    this.title.setTitle('Login | Sensate IoT')
   }
 
   public ngOnInit() {
@@ -75,7 +78,11 @@ export class LoginComponent implements OnInit {
     });
 
     if(this.isLoggedIn) {
-      this.apps.forward(this.forwardTo);
+      if(this.forwardTo === 'dashboard') {
+        this.apps.forward(this.forwardTo, '/overview');
+      } else {
+        this.apps.forward(this.forwardTo);
+      }
     }
   }
 
@@ -101,15 +108,15 @@ export class LoginComponent implements OnInit {
         data.body.email = this.email.value;
         this.auth.setSession(data.body);
 
-        this.accounts.rawCheckPhoneConfirmed().subscribe((result) => {
+        this.accounts.checkPhoneConfirmed(data.body.jwtToken).subscribe((result) => {
           /* Forward the user to the phone confirmation screen if a phone number has not yet been confirmed.. */
           if(result.body.message == 'true') {
-            this.apps.forward(this.forwardTo);
+            this.apps.forward(this.forwardTo, '/overview');
           } else {
-            this.apps.forward(this.forwardTo, 'confirm-phone-number');
+            this.apps.forward(this.forwardTo, '/confirm-phone-number');
           }
         }, () => {
-          this.apps.forward(this.forwardTo);
+          this.apps.forward(this.forwardTo, '/overview');
         });
       }, error => {
         const result = error.error;
@@ -153,7 +160,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.accounts.resetPassword(this.email.value.toString()).subscribe(value => {
+    this.accounts.resetPassword(this.email.value.toString()).subscribe(() => {
       this.alerts.showNotification('A security token has been sent to your mail address!', 'top-center', 'success');
       this.router.navigate(['/reset-password'], { queryParams: {email: this.email.value.toString() }});
     }, error => {

@@ -4,6 +4,7 @@ import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@a
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from "../../clients/alert.service";
 import {AccountService} from "../../clients/account.service";
+import {Title} from "@angular/platform-browser";
 
 class ResetErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -27,8 +28,11 @@ export class ForgotPasswordComponent implements OnInit {
   public first : boolean = true;
   public matcher : ResetErrorStateMatcher = new ResetErrorStateMatcher();
 
-  constructor(private accounts : AccountService, private alerts : AlertService,
+  public constructor(private accounts : AccountService, private alerts : AlertService,
+              private readonly title: Title,
               private router : Router, private route : ActivatedRoute) {
+    this.title.setTitle('Login | Sensate IoT')
+
     this.email = new FormControl('', [
       Validators.required,
       Validators.email

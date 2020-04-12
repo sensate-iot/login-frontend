@@ -16,6 +16,9 @@ import {AlertService} from "../../clients/alert.service";
 import {PhonenumberMatcher} from "../../matchers/phonenumber.matcher";
 import {UserRegistration} from "../../models/user-registration.model";
 import {AccountService} from "../../clients/account.service";
+import {Title} from "@angular/platform-browser";
+import {LoginService} from "../../clients/login.service";
+import {AppsService} from "../../clients/apps.service";
 
 @Component({
   selector: 'app-register',
@@ -42,11 +45,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
   public phoneMatcher : PhonenumberMatcher;
 
   constructor(private accounts : AccountService, private alerts : AlertService,
+              private readonly title: Title,
+              private readonly auth: LoginService,
+              private readonly apps: AppsService,
               @Inject(DOCUMENT) private document : Window, private router : Router) {
     this.matcher = new FormMatcher();
     this.phoneMatcher = new PhonenumberMatcher();
     this.first = true;
     this.origin = encodeURI(this.document.location.origin);
+    this.title.setTitle('Register | Sensate IoT')
   }
 
   public ngOnDestroy() {
@@ -54,6 +61,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
+    if(this.auth.isLoggedIn()) {
+      this.apps.forward('dashboard', '/overview');
+    }
+
     this.email = new FormControl('', [
       Validators.email,
       Validators.required
@@ -73,8 +84,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.countryCodeControl = new FormControl('', [
       Validators.required
     ]);
-
-
 
     this.registerForm = new FormGroup({
       email: this.email,

@@ -8,24 +8,26 @@
   position: relative;
 }
 
-.background {
-  /*background-size: cover;*/
-  background: url("../../../assets/img/register_bg.jpg") no-repeat center center;
-  height: 100%;
-  background-size: cover;
-  filter: brightness(40%);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 0;
-}
+
+  .background {
+    /*background-size: cover;*/
+    background: url("../../../assets/img/register_bg.jpg") no-repeat center center;
+    height: 100%;
+    background-size: cover;
+    filter: brightness(40%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+  }
 
 .register-content {
   margin-top: -50px;
 }
 
 .card{
+  margin-bottom: 20px;
   margin-top: 40px;
   position: relative;
   padding: 20px;
@@ -102,16 +104,35 @@
   margin-top: 3%;
 }
 
+@media (min-height: 1080px) and (min-width: 1920px) {
+  .register-panel {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
 .card h3{
   text-align: center;
 }
 
+.h-center {
+  display:inline-block;
+  vertical-align: middle;
+  float:none;
+}
+
 div.terms {
-  padding-top: 8%;
+}
+
+.last {
+  padding-top: 5%;
 }
 
 .register {
-  margin-left: 10%;
 }
 
 mat-checkbox {

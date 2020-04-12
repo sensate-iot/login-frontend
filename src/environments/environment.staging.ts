@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  cookieDomain: 'staging.sensateiot.com',
-  authApiHost: 'https://api.staging.sensateiot.com/auth/v1'
+  authApiHost: 'https://api.staging.sensateiot.com/auth/v1',
+  appsApiHost: 'https://api.staging.sensateiot.com/apps/v1',
 };
