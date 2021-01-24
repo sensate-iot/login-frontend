@@ -24,7 +24,7 @@
     "@angular/router": "^11.1.0",
     "moment": "^2.29.0",
     "ngx-cookie-service": "^11.0.2",
-    "ngx-device-detector": "^1.5.2",
+    "ngx-device-detector": "^2.0.5",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

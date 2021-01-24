@@ -23,7 +23,6 @@ import {MatButtonModule} from "@angular/material/button";
 import { HeaderComponent } from './shared/header/header.component';
 import {Routing} from "./app.routes";
 import { LoginComponent } from './pages/login/login.component';
-import {DeviceDetectorModule} from "ngx-device-detector";
 import {CookieService} from "ngx-cookie-service";
 import {LoginService} from "./clients/login.service";
 import {AccountService} from "./clients/account.service";
@@ -43,7 +42,6 @@ import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.compo
     ConfirmEmailComponent
   ],
   imports: [
-    DeviceDetectorModule.forRoot(),
     Routing,
     BrowserModule,
     BrowserAnimationsModule,
