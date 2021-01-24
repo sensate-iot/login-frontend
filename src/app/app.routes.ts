@@ -15,4 +15,4 @@ const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 
-export const Routing = RouterModule.forRoot(routes);
+export const Routing = RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' });
