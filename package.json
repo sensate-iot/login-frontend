@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --aot=false --disableHostCheck=true --port=4300",
+    "start": "ng serve --disableHostCheck=true --port=4300",
     "build-dev": "ng build",
     "build-staging": "ng build --aot --configuration=staging",
     "build": "ng build --prod --aot",
