@@ -155,7 +155,7 @@ export class LoginComponent implements OnInit {
   }
 
   public onForgotPasswordClicked() {
-    if(!this.email.valid || this.email.value.toString().length <= 0) {
+    if(this.email.value.toString().length <= 0) {
       this.alerts.showNotification('Enter a valid email address!', 'top-center', 'warning');
       return;
     }

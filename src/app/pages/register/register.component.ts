@@ -121,12 +121,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  private static cleanPhoneNumber(msisdn: string) {
+    if(msisdn.startsWith('06')) {
+      return msisdn.replace('06', '6');
+    }
+
+    return msisdn;
+  }
+
   public onSubmitClicked() : void {
     this.first = false;
     const user = new UserRegistration();
     const loginUrl = this.origin + '/login';
 
-    const phone = '+' + this.countryCodeControl.value.toString() + this.phoneNumberControl.value.toString();
+    const number = RegisterComponent.cleanPhoneNumber(this.phoneNumberControl.value.toString());
+    const phone = '+' + this.countryCodeControl.value.toString() + number;
+
     user.email = this.email.value.toString();
     user.firstName = this.firstName.value.toString();
     user.lastName = this.lastName.value.toString();
