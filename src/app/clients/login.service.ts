@@ -117,6 +117,7 @@ export class LoginService {
     localStorage.removeItem('jwt');
     localStorage.removeItem('roles');
     localStorage.removeItem('admin');
+    localStorage.removeItem('apps');
     localStorage.removeItem('userId');
     localStorage.removeItem('phone-confirmed');
     localStorage.removeItem('syskey');
