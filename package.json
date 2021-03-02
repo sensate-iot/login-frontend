@@ -1,6 +1,6 @@
 {
-  "name": "sensate-login",
-  "version": "1.2.0",
+  "name": "sensateiot-login",
+  "version": "1.2.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --disableHostCheck=true --port=4300",
