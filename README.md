@@ -1,4 +1,11 @@
-# SensateLogin
+# Sensate IoT Login
+
+Sensate IoT Login is the login frontend for the Sensate IoT data platform. Features include:
+
+- Login page;
+- Registration page;
+- Forgot password page;
+- Email validation.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
